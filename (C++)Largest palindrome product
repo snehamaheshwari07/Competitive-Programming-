@@ -1,0 +1,51 @@
+Problem 4 from projecteuler.net
+A palindromic number reads the same both ways. The smallest 6 digit palindrome made from the product of two 3-digit numbers is 101101=143*707 .
+Find the largest palindrome made from the product of two 3-digit numbers which is less than N.
+
+
+
+#include<iostream>
+using namespace std;
+
+bool ispalindrom(long int num) {
+   long int rev=0,val;
+   val = num;
+   while(num > 0) { 
+      rev = rev * 10 + num % 10; 
+      num = num / 10; 
+   } 
+   if(val==rev)
+      return 1;
+   else 
+      return 0;    
+};
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		long int prod=-1;
+		long int bigpalindrom=prod;
+		long int n;
+		//int a,b;
+		cin>>n;
+		for(int i=100;i<1000;i++)
+		{
+			for(int j=999;j>99;j--)
+			{
+				prod=i*j;
+				if(prod>bigpalindrom&&prod<n&&ispalindrom(prod))
+				{
+					bigpalindrom=prod;
+					break;
+				}
+				
+			}
+		}
+		if(bigpalindrom!=-1){
+		cout<<bigpalindrom<<endl;}
+	}
+	return 0;
+}
